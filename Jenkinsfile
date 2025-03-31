@@ -8,7 +8,7 @@ pipeline {
                 sshagent(['manjaro']) {
                     sh """
                         # Connect to remote server and execute the preparation commands
-                        ssh -o StrictHostKeyChecking=no -p 2323 ubuntu@3.106.223.225'
+                        ssh -o StrictHostKeyChecking=no -p 22 ubuntu@3.106.223.225'
                             # Check if the directory exists and create if not
                             mkdir -p ~/Code/CICD
                             
