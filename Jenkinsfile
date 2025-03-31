@@ -32,8 +32,8 @@ pipeline {
                             git checkout main
                             
                             # Now run the deploy script
-                            chmod +x ~/deploy.sh
-                            ~/deploy.sh
+                            chmod +x .deploy.sh
+                            .deploy.sh
                         '
                     """
                 }
