@@ -12,6 +12,10 @@ app.use('/', (req, res) => {
     res.send('Hello World!');
 }
 );
+// Routes
+app.use('/api', (req, res) => {
+    res.send('Hello World!');
+});
 
 // Start the server
 app.listen(PORT, () => {
