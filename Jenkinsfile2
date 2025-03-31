@@ -22,21 +22,14 @@ pipeline {
                         cd test-jenskin
                         git checkout main
                     fi
+                    chmod +x ~/Code/CICD/test-jenskin.sh
+                    ~/Code/CICD/test-jenskin.sh
+                    echo "Script executed successfully."
+                    }'
                     """
                 }
             }
-            steps {
-                echo 'Running deployment script'
-                sh """
-                    chmod +x ~/Code/CICD/test-jenskin.sh
-                    ~/Code/CICD/test-jenskin.sh
-                """
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deployment stage'
-            }
+
         }
     }
 }
