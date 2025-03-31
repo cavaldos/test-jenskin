@@ -22,10 +22,20 @@ pipeline {
                         cd test-jenskin
                         git checkout main
                     fi
-                    chmod +x ./deploy.sh && ./deploy.sh'
-                        ''' 
                     """
                 }
+            }
+            steps {
+                echo 'Running deployment script'
+                sh """
+                    chmod +x ./deploy.sh
+                    ./deploy.sh
+                """
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deployment stage'
             }
         }
     }
