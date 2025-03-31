@@ -1,21 +1,21 @@
-# #!/bin/bash
+#!/bin/bash
 
-# # Check if project directory exists
-# mkdir -p ~/Code/CICD
-# cd ~/Code/CICD
+# Check if project directory exists
+mkdir -p ~/Code/CICD
+cd ~/Code/CICD
 
-# if [ -d "test-jenskin" ]; then
-#     echo "Project already exists. Updating from GitHub..."
-#     cd test-jenskin
-#     git fetch
-#     git reset --hard origin/main
-#     git pull origin main
-# else
-#     echo "Project does not exist. Cloning from GitHub..."
-#     git clone https://github.com/cavaldos/test-jenskin.git
-#     cd test-jenskin
-#     git checkout main
-# fi
+if [ -d "test-jenskin" ]; then
+    echo "Project already exists. Updating from GitHub..."
+    cd test-jenskin
+    git fetch
+    git reset --hard origin/main
+    git pull origin main
+else
+    echo "Project does not exist. Cloning from GitHub..."
+    git clone https://github.com/cavaldos/test-jenskin.git
+    cd test-jenskin
+    git checkout main
+fi
 
 # Install dependencies and run commands
 npm install
