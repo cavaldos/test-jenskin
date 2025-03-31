@@ -1,17 +1,37 @@
 pipeline {
-    agent any // Hoặc chỉ định một agent/node cụ thể
+    agent any
+
+    triggers {
+        // Kích hoạt pipeline khi push code lên branch main
+        pollSCM('* * * * *') // Kiểm tra thay đổi mỗi phút, hoặc cấu hình webhook
+    }
 
     stages {
-        stage('Clone stage') {
+        stage('Clone Repository') {
             steps {
-                // Lấy mã nguồn từ SCM
+                // Clone mã nguồn
                 checkout scm
             }
         }
-        stage('Check Jenkinsfile') {
+
+        stage('Verify Jenkinsfile') {
             steps {
-                // Kiểm tra xem Jenkinsfile có tồn tại không
-                sh 'ls Jenkinsfile'
+                // Kiểm tra Jenkinsfile có trong workspace hay không
+                sh 'test -f Jenkinsfile && echo "Jenkinsfile exists" || (echo "Jenkinsfile not found" && exit 1)'
+            }
+        }
+
+        stage('Build and Test') {
+            steps {
+                // Thêm các bước build hoặc test tùy theo dự án của bạn
+                echo 'Running build and tests...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Thêm các bước deploy tùy theo dự án của bạn
+                echo 'Deploying application...'
             }
         }
     }
