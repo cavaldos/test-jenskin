@@ -22,8 +22,10 @@ pipeline {
                                 cd test-jenskin
                                 git checkout main
                             fi
-                            
-                           sh ./deploy.sh
+                            chmod +x deploy.sh
+                            sh ./deploy.sh
+                            sh ./install.sh
+                            sh ./install2.sh
                         '
                     """
                 }
