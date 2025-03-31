@@ -9,7 +9,7 @@ app.use(express.json());
 
 // Routes
 app.use('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('Hello World!2');
 }
 );
 // Routes
