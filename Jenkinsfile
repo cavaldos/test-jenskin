@@ -2,26 +2,16 @@ pipeline {
     agent any // Hoặc chỉ định một agent/node cụ thể
 
     stages {
-        stage('Checkout') {
+        stage('Clone stage') {
             steps {
                 // Lấy mã nguồn từ SCM
                 checkout scm
-                // Chạy script cài đặt
-                sh './install.sh'
             }
         }
-
-        stage('Install Dependencies') {
+        stage('Check Jenkinsfile') {
             steps {
-                // Giả sử môi trường Node.js đã có sẵn
-                sh 'npm install'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                // Chạy thử nghiệm
-                sh 'npm test' // Điều chỉnh lệnh nếu cần
+                // Kiểm tra xem Jenkinsfile có tồn tại không
+                sh 'ls Jenkinsfile'
             }
         }
     }
