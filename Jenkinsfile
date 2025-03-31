@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    triggers {
-        // Kích hoạt pipeline khi push code lên branch main
-        pollSCM('* * * * *') // Kiểm tra thay đổi mỗi phút, hoặc cấu hình webhook
-    }
-
     stages {
         stage('Clone Repository') {
             steps {
