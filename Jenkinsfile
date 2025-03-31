@@ -24,7 +24,7 @@ pipeline {
         stage('Build and Test') {
             steps {
                 // Thêm các bước build hoặc test tùy theo dự án của bạn
-                echo 'Running build and tests...'
+                sh './install.sh' // Ví dụ: chạy script cài đặt
             }
         }
 
