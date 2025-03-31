@@ -1,2 +1,1 @@
 echo "Instsdafasdfasdallation starsdfasdfted..."
-s
