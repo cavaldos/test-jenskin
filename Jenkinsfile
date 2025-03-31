@@ -21,13 +21,6 @@ pipeline {
             }
         }
 
-        stage('Build and Test') {
-            steps {
-                // Thêm các bước build hoặc test tùy theo dự án của bạn
-                sh './install.sh' // Ví dụ: chạy script cài đặt
-            }
-        }
-
         stage('Deploy') {
             steps {
                 // Thêm các bước deploy tùy theo dự án của bạn
