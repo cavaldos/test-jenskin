@@ -25,7 +25,7 @@ pipeline {
                     chmod +x ~/Code/CICD/deploy.sh
                     bash ~/Code/CICD/deploy.sh
                     echo "Script executed successfully."
-                    }'
+                
                     """
                 }
             }
