@@ -13,8 +13,11 @@ pipeline {
                             cd ~/Code/CICD
                             
                             if [ -d "test-jenskin" ]; then
-                                echo "Project already exists. Using existing project."
+                                echo "Project already exists. Updating from GitHub..."
                                 cd test-jenskin
+                                git fetch
+                                git reset --hard origin/main
+                                git pull origin main
                             else
                                 echo "Project does not exist. Cloning from GitHub..."
                                 git clone https://github.com/cavaldos/test-jenskin.git
@@ -26,8 +29,9 @@ pipeline {
                             npm install
                             npm run test || true  # Continue even if tests fail
                             npm run build
+                            docker-compose -f docker-compose.yml down
+                            docker-compose -f docker-compose.yml build
                             docker-compose -f docker-compose.yml up -d
-                            
                         '
                     """
                 }
