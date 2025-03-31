@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('SSH and Run Commands') {
+            steps {
+                // Ensure 'manjaro' matches the credential ID configured in Jenkins
+                sshagent(['manjaro']) {
+                    sh """
+                        scp -o StrictHostKeyChecking=no -P 22 deploy.sh ubuntu@3.106.223.225:~/deploy.sh
+
+                        ssh -o StrictHostKeyChecking=no -p 22 ubuntu@3.106.223.225 'chmod +x ~/deploy.sh && ~/deploy.sh'
+                    """
+                }
+            }
+        }
+    }
+}
