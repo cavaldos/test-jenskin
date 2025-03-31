@@ -7,8 +7,22 @@ pipeline {
                 // Ensure 'manjaro' matches the credential ID configured in Jenkins
                 sshagent(['manjaro']) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no -p 22 ubuntu@3.106.223.225 '
-                            chmod +x ./deploy.sh && ./deploy.sh'
+                        ssh -o StrictHostKeyChecking=no -p 23 ubuntu@3.106.223.225 '
+                        mkdir -p ~/Code/CICD
+                        cd ~/Code/CICD
+                        if [ -d "test-jenskin" ]; then
+                        echo "Project already exists. Updating from GitHub..."
+                        cd test-jenskin
+                        git fetch
+                        git reset --hard origin/main
+                        git pull origin main
+                    else
+                        echo "Project does not exist. Cloning from GitHub..."
+                        git clone https://github.com/cavaldos/test-jenskin.git
+                        cd test-jenskin
+                        git checkout main
+                    fi
+                    chmod +x ./deploy.sh && ./deploy.sh'
                         ''' 
                     """
                 }
