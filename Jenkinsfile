@@ -26,7 +26,8 @@ pipeline {
                             npm install
                             npm run test || true  # Continue even if tests fail
                             npm run build
-                            npm run start
+                            docker-compose -f docker-compose.yml up -d
+                            
                         '
                     """
                 }
