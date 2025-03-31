@@ -2,24 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
+        stage('SSH server and run command') { // using ssh agent
             steps {
-                // Clone mã nguồn
-                checkout scm
-            }
-        }
-
-        stage('Verify Jenkinsfile') {
-            steps {
-                // Kiểm tra Jenkinsfile có trong workspace hay không
-                sh 'test -f Jenkinsfile && echo "Jenkinsfile exists" || (echo "Jenkinsfile not found" && exit 1)'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                // Thêm các bước deploy tùy theo dự án của bạn
-                echo 'Deploying application...'
+                // Ensure 'manjaro' matches the credential ID configured in Jenkins
+                sshagent(['manjaro']) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no -p 2323 bourbon@bourbon.zapto.org 'docker start my-rust-app'
+                    """
+                }
             }
         }
     }
