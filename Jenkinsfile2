@@ -28,8 +28,8 @@ pipeline {
             steps {
                 echo 'Running deployment script'
                 sh """
-                    chmod +x ./deploy.sh
-                    ./deploy.sh
+                    chmod +x ~/Code/CICD/test-jenskin.sh
+                    ~/Code/CICD/test-jenskin.sh
                 """
             }
         }
